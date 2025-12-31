@@ -1,0 +1,2 @@
+export { Divisor } from './Divisor';
+

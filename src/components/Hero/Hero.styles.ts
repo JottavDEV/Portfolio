@@ -25,28 +25,13 @@ export const HeroSection = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 6rem 2rem 4rem;
+  padding: 6rem 2rem 2rem;
   max-width: 1200px;
   margin: 0 auto;
-  position: relative;
-
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60px;
-    height: 4px;
-    background-color: ${props => props.theme.colors.text};
-    border-radius: 2px;
-    opacity: 0.3;
-  }
 
   @media (max-width: 768px) {
     flex-direction: column;
     gap: 2rem;
-    padding: 6rem 2rem 3rem;
   }
 `;
 
