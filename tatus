@@ -1,0 +1,64 @@
+[33mcommit f34e24eda7cc49e14b25173b0e80a2afe2b2a818[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: JottavDEV <jottavdev@icloud.com>
+Date:   Wed Dec 31 17:51:02 2025 -0300
+
+    feat: implementar loop infinito no carrossel de projetos e ajustar altura dos cards
+    
+    ## Implementação de Loop Infinito no Carrossel
+    
+    - Adicionada duplicação dos projetos no componente Projects.tsx
+      - Criada variável duplicatedProjects que duplica o array de projetos
+      - Garante loop infinito contínuo ao navegar pelos projetos
+      - Mantida configuração loop: true no Embla Carousel para suporte nativo
+    
+    ## Ajuste de Altura Uniforme dos Cards
+    
+    ### Modificações em Projects.styles.ts:
+    
+    1. ProjectsCarouselContainerInner:
+       - Adicionado align-items: stretch para que todos os slides tenham a mesma altura
+       - Garante que os cards se alinhem verticalmente no carrossel
+    
+    2. ProjectSlide:
+       - Adicionado display: flex para permitir que o card interno estique
+       - Mantida a estrutura flex responsiva existente
+    
+    3. ProjectCard:
+       - Adicionado width: 100% para preencher toda a largura do slide
+       - Adicionado height: 100% para preencher toda a altura do slide
+       - Garante que todos os cards tenham a mesma altura, ajustando-se ao maior card visível
+    
+    ## Resultado
+    
+    - Carrossel agora funciona com loop infinito verdadeiro, permitindo navegação contínua
+    - Todos os cards de projeto têm altura uniforme, criando uma apresentação mais organizada e profissional
+    - Mantida toda a responsividade existente para diferentes tamanhos de tela
+    - Preservadas todas as funcionalidades anteriores (preview de sites, tags, links, etc)
+
+ "CarouselContainerInner\357\200\272"               |  27 [32m+++[m
+ package-lock.json                                  |  39 [32m++++[m
+ package.json                                       |   2 [32m+[m
+ projetos no componente Projects.tsx                |  27 [32m+++[m
+ ...3o Victor Carvalho de Oliveira - EN US.pdf.pdf" | Bin [31m0[m -> [32m54595[m bytes
+ ...03\243o Victor Carvalho de Oliveira - PTBR.pdf" | Bin [31m0[m -> [32m55315[m bytes
+ public/images/Perfil.jpeg                          | Bin [31m0[m -> [32m31383[m bytes
+ public/images/favicon.png                          | Bin [31m0[m -> [32m104691[m bytes
+ public/images/nextjsicon.png                       | Bin [31m0[m -> [32m16093[m bytes
+ sel de projetos e ajustar altura dos cards         |  27 [32m+++[m
+ src/app/layout.tsx                                 |   6 [32m+[m[31m-[m
+ src/components/Divisor/Divisor.styles.ts           |   6 [32m+[m[31m-[m
+ src/components/Header/Header.styles.ts             | 209 [32m+++++++++++++++++++[m[31m--[m
+ src/components/Header/Header.tsx                   | 122 [32m++++++++++[m[31m--[m
+ src/components/Hero/Hero.styles.ts                 | 146 [32m+++++++++++++[m[31m-[m
+ src/components/Hero/Hero.tsx                       |  71 [32m++++++[m[31m-[m
+ src/components/Hero/TypewriterText.tsx             |  93 [32m+++++++++[m
+ src/components/Projects/Projects.styles.ts         | 103 [32m++++++++++[m
+ src/components/Projects/Projects.tsx               | 196 [32m++++++++++++[m[31m-------[m
+ src/components/Providers/Providers.tsx             |   7 [32m+[m[31m-[m
+ src/components/Skills/Skills.styles.ts             |  57 [32m+++++[m[31m-[m
+ src/components/Skills/Skills.tsx                   |  90 [32m+++++++[m[31m--[m
+ src/contexts/LanguageContext.tsx                   |  65 [32m+++++++[m
+ src/locales/en.ts                                  |  46 [32m+++++[m
+ src/locales/index.ts                               |  16 [32m++[m
+ src/locales/pt.ts                                  |  46 [32m+++++[m
+ 26 files changed, 1273 insertions(+), 128 deletions(-)

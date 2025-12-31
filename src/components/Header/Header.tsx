@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { useTheme } from '../../contexts/ThemeContext';
 import { useLanguage } from '../../contexts/LanguageContext';
 import {
@@ -25,6 +27,7 @@ import {
 export const Header: React.FC = () => {
   const { themeMode, setThemeMode } = useTheme();
   const { language, setLanguage, t } = useLanguage();
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
   const [isThemeDropdownOpen, setIsThemeDropdownOpen] = useState(false);
@@ -95,19 +98,30 @@ export const Header: React.FC = () => {
         <MobileMenuOverlay $isOpen={isMenuOpen} onClick={closeMenu} />
         <NavLinks $isOpen={isMenuOpen}>
           <NavLink>
-            <a href="#home" onClick={closeMenu}>{t.header.home}</a>
+            <Link href="/" onClick={closeMenu}>{t.header.home}</Link>
           </NavLink>
           <NavLink>
-            <a href="#about" onClick={closeMenu}>{t.header.about}</a>
+            <Link href="/about" onClick={closeMenu}>{t.header.about}</Link>
           </NavLink>
+          {pathname === '/' && (
+            <>
+              <NavLink>
+                <a href="#skills" onClick={closeMenu}>{t.header.skills}</a>
+              </NavLink>
+              <NavLink>
+                <a href="#projects" onClick={closeMenu}>{t.header.projects}</a>
+              </NavLink>
+            </>
+          )}
           <NavLink>
-            <a href="#skills" onClick={closeMenu}>{t.header.skills}</a>
-          </NavLink>
-          <NavLink>
-            <a href="#projects" onClick={closeMenu}>{t.header.projects}</a>
-          </NavLink>
-          <NavLink>
-            <a href="#contact" onClick={closeMenu}>{t.header.contact}</a>
+            <a 
+              href="https://wa.me/5577988586720?text=Oi,%20vim%20pelo%20site" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              onClick={closeMenu}
+            >
+              {t.header.contact}
+            </a>
           </NavLink>
           <NavLink>
             <LanguageDropdownContainer ref={languageDropdownRef}>

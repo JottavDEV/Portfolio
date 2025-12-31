@@ -96,6 +96,35 @@ export const NavLink = styled.li`
     }
   }
 
+  /* Estilos para Link do Next.js */
+  a[href^="/"] {
+    color: ${props => props.theme.colors.text};
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: opacity 0.3s ease;
+    position: relative;
+
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: ${props => props.theme.colors.text};
+      transition: width 0.3s ease;
+    }
+
+    &:hover {
+      opacity: 0.8;
+
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+
   @media (max-width: 768px) {
     width: 100%;
     padding: 1rem 0;

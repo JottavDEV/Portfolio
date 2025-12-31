@@ -42,5 +42,9 @@ export const en = {
       },
     },
   },
+  about: {
+    title: 'Hello',
+    description: 'My name is João, I study Information Systems at Universidade de Excelência (UNEX), where I entered the world of programming. At university, I took my first steps in programming, studying programming logic in JavaScript and developing a taste for the area. I started studying other languages, and from there I entered the market. Currently, I spend my time studying and deepening my knowledge in web development, focusing on Python, NodeJS, React, TypeScript, among others.\n\nMy goal is to innovate in the area and improve my skills as a full-stack developer.\n\nI am always looking for new challenges and teachings, so I am always open to new opportunities.\n\nIf you liked my projects and are interested in getting to know me better, contact me!',
+  },
 };
 
