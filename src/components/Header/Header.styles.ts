@@ -36,29 +36,50 @@ export const Logo = styled.div`
   }
 `;
 
-export const NavLinks = styled.ul`
+export const NavLinks = styled.ul<{ $isOpen?: boolean }>`
   display: flex;
   list-style: none;
   gap: 2rem;
   align-items: center;
+  margin: 0;
+  padding: 0;
+
+  @media (max-width: 768px) {
+    position: fixed;
+    top: 80px;
+    right: ${props => props.$isOpen ? '0' : '-100%'};
+    width: 280px;
+    height: calc(100vh - 80px);
+    background-color: ${props => props.theme.colors.background};
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem;
+    gap: 0;
+    box-shadow: -4px 0 24px ${props => 
+      props.theme.name === 'light' 
+        ? 'rgba(26, 22, 35, 0.1)' 
+        : 'rgba(255, 255, 255, 0.1)'};
+    transition: right 0.3s ease;
+    z-index: 998;
+    overflow-y: auto;
+  }
 `;
 
 export const NavLink = styled.li`
+  position: relative;
+
   a {
     color: ${props => props.theme.colors.text};
     text-decoration: none;
     font-weight: 500;
+    font-size: 1rem;
     transition: opacity 0.3s ease;
     position: relative;
-
-    &:hover {
-      opacity: 0.7;
-    }
 
     &::after {
       content: '';
       position: absolute;
-      bottom: -5px;
+      bottom: -4px;
       left: 0;
       width: 0;
       height: 2px;
@@ -66,8 +87,35 @@ export const NavLink = styled.li`
       transition: width 0.3s ease;
     }
 
-    &:hover::after {
+    &:hover {
+      opacity: 0.8;
+
+      &::after {
+        width: 100%;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    width: 100%;
+    padding: 1rem 0;
+    border-bottom: 1px solid ${props => 
+      props.theme.name === 'light' 
+        ? 'rgba(26, 22, 35, 0.1)' 
+        : 'rgba(255, 255, 255, 0.1)'};
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    a {
+      display: block;
       width: 100%;
+      font-size: 1.1rem;
+
+      &::after {
+        display: none;
+      }
     }
   }
 `;
@@ -105,10 +153,10 @@ export const ThemeSelect = styled.select`
         : 'rgba(255, 255, 255, 0.2)'};
   }
 
-        option {
-          color: ${props => props.theme.colors.text};
-        }
-      `;
+  option {
+    color: ${props => props.theme.colors.text};
+  }
+`;
 
 export const HamburgerButton = styled.button<{ $isOpen: boolean }>`
   display: none;
