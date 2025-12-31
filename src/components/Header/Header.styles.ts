@@ -105,8 +105,72 @@ export const ThemeSelect = styled.select`
         : 'rgba(255, 255, 255, 0.2)'};
   }
 
-  option {
-    color: ${props => props.theme.colors.text};
+        option {
+          color: ${props => props.theme.colors.text};
+        }
+      `;
+
+export const HamburgerButton = styled.button<{ $isOpen: boolean }>`
+  display: none;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 999;
+  position: relative;
+
+  @media (max-width: 768px) {
+    display: flex;
+  }
+
+  span {
+    width: 30px;
+    height: 3px;
+    background-color: ${props => props.theme.colors.text};
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    transform-origin: center;
+
+    &:nth-child(1) {
+      transform: ${props => props.$isOpen ? 'rotate(45deg) translate(10px, 10px)' : 'rotate(0)'};
+    }
+
+    &:nth-child(2) {
+      opacity: ${props => props.$isOpen ? '0' : '1'};
+      transform: ${props => props.$isOpen ? 'translateX(-20px)' : 'translateX(0)'};
+    }
+
+    &:nth-child(3) {
+      transform: ${props => props.$isOpen ? 'rotate(-45deg) translate(10px, -10px)' : 'rotate(0)'};
+    }
+  }
+
+  &:focus {
+    outline: none;
+  }
+`;
+
+export const MobileMenuOverlay = styled.div<{ $isOpen: boolean }>`
+  display: none;
+
+  @media (max-width: 768px) {
+    display: ${props => props.$isOpen ? 'block' : 'none'};
+    position: fixed;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 80px);
+    background-color: ${props => 
+      props.theme.name === 'light' 
+        ? 'rgba(26, 22, 35, 0.5)' 
+        : 'rgba(0, 0, 0, 0.5)'};
+    z-index: 997;
+    opacity: ${props => props.$isOpen ? '1' : '0'};
+    transition: opacity 0.3s ease;
   }
 `;
 

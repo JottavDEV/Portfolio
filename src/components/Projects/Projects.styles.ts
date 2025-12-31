@@ -85,7 +85,12 @@ export const ProjectImage = styled.div`
     transition: transform 0.3s ease;
   }
 
-  ${ProjectCard}:hover & img {
+  iframe {
+    transition: transform 0.3s ease;
+  }
+
+  ${ProjectCard}:hover & img,
+  ${ProjectCard}:hover & iframe {
     transform: scale(1.05);
   }
 `;

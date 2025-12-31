@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import Image from 'next/image';
+import { ProjectPreview } from './ProjectPreview';
 import {
   ProjectsSection,
   ProjectsContainer,
@@ -22,6 +22,7 @@ interface Project {
   title: string;
   description: string;
   image: string;
+  previewUrl?: string;
   tags: string[];
   link?: string;
   github?: string;
@@ -37,6 +38,7 @@ const defaultProjects: Project[] = [
     title: 'Projeto 1',
     description: 'Descrição do projeto 1. Uma breve descrição do que foi desenvolvido.',
     image: '/images/topo.png',
+    previewUrl: 'https://cardap-io-unex.vercel.app',
     tags: ['React', 'TypeScript', 'Next.js'],
     link: '#',
     github: '#',
@@ -70,12 +72,10 @@ export const Projects: React.FC<ProjectsProps> = ({ projects = defaultProjects }
           {projects.map((project) => (
             <ProjectCard key={project.id}>
               <ProjectImage>
-                <Image
-                  src={project.image}
+                <ProjectPreview
+                  previewUrl={project.previewUrl}
+                  image={project.image}
                   alt={project.title}
-                  width={400}
-                  height={200}
-                  style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
               </ProjectImage>
               <ProjectInfo>
