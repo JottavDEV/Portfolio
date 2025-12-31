@@ -35,13 +35,13 @@ interface ProjectsProps {
 const defaultProjects: Project[] = [
   {
     id: '1',
-    title: 'Projeto 1',
-    description: 'Descrição do projeto 1. Uma breve descrição do que foi desenvolvido.',
+    title: 'Cardápio Digital',
+    description: 'Um cardápio digital para restaurantes, com funcionalidades de busca, filtros, e favoritos, além de pedidos online e locais separados por mesas.',
     image: '/images/topo.png',
     previewUrl: 'https://cardap-io-unex.vercel.app',
-    tags: ['React', 'TypeScript', 'Next.js'],
-    link: '#',
-    github: '#',
+    tags: ['React Native', 'TypeScript', 'Supabase', 'Expo'],
+    link: 'https://cardap-io-unex.vercel.app',
+    github: 'https://github.com/jottavdev/Cardap.io',
   },
   {
     id: '2',
