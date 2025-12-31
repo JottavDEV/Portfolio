@@ -34,12 +34,12 @@ export const SkillsTitle = styled.h2`
 
 export const SkillsGrid = styled.div`
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 1.5rem;
   justify-items: center;
 
   @media (max-width: 1024px) {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
   }
 
   @media (max-width: 768px) {
