@@ -120,9 +120,16 @@ export const NavLink = styled.li`
   }
 `;
 
-export const ThemeSelect = styled.select`
+export const LanguageDropdownContainer = styled.div`
+  position: relative;
+`;
+
+export const LanguageDropdownButton = styled.button<{ $isOpen: boolean }>`
   background: none;
-  border: none;
+  border: 1px solid ${props => 
+    props.theme.name === 'light' 
+      ? 'rgba(26, 22, 35, 0.1)' 
+      : 'rgba(255, 255, 255, 0.1)'};
   color: ${props => props.theme.colors.text};
   padding: 0.5rem 2.5rem 0.5rem 1rem;
   border-radius: 8px;
@@ -130,19 +137,16 @@ export const ThemeSelect = styled.select`
   font-weight: 500;
   font-size: 0.9rem;
   transition: all 0.3s ease;
+  position: relative;
   appearance: none;
-  background-image: ${props => {
-    const textColor = encodeURIComponent(props.theme.colors.text);
-    return `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='${textColor}' d='M6 9L1 4h10z'/%3E%3C/svg%3E")`;
-  }};
-  background-repeat: no-repeat;
-  background-position: right 0.7rem center;
-  background-size: 0.75rem;
 
   &:hover {
     background-color: rgba(255, 255, 255, 0.3);
     color: #000000;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23000000' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    
+    &::after {
+      border-top-color: #000000;
+    }
   }
 
   &:focus {
@@ -153,8 +157,189 @@ export const ThemeSelect = styled.select`
         : 'rgba(255, 255, 255, 0.2)'};
   }
 
-  option {
-    color: ${props => props.theme.colors.text};
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0.7rem;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid ${props => props.theme.colors.text};
+    transition: transform 0.3s ease, border-top-color 0.3s ease;
+    transform: translateY(-50%) ${props => props.$isOpen ? 'rotate(180deg)' : 'rotate(0deg)'};
+  }
+`;
+
+export const LanguageDropdownList = styled.ul<{ $isOpen: boolean }>`
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.5rem;
+  background-color: ${props => props.theme.colors.background};
+  border: 1px solid ${props => 
+    props.theme.name === 'light' 
+      ? 'rgba(26, 22, 35, 0.1)' 
+      : 'rgba(255, 255, 255, 0.1)'};
+  border-radius: 8px;
+  list-style: none;
+  padding: 0.5rem 0;
+  min-width: 100px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  opacity: ${props => props.$isOpen ? '1' : '0'};
+  visibility: ${props => props.$isOpen ? 'visible' : 'hidden'};
+  transform: ${props => props.$isOpen ? 'translateY(0)' : 'translateY(-10px)'};
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+  z-index: 1000;
+`;
+
+export const LanguageDropdownItem = styled.li<{ $isSelected: boolean }>`
+  padding: 0.5rem 1.5rem;
+  color: ${props => props.theme.colors.text};
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+  position: relative;
+  transition: background-color 0.2s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: ${props => props.$isSelected ? '3px' : '0'};
+    height: ${props => props.$isSelected ? '60%' : '0'};
+    background-color: ${props => props.theme.colors.text};
+    border-radius: 0 2px 2px 0;
+    transition: width 0.2s ease, height 0.2s ease;
+    opacity: ${props => props.$isSelected ? '1' : '0'};
+  }
+
+  &:hover {
+    background-color: ${props => 
+      props.theme.name === 'light' 
+        ? 'rgba(26, 22, 35, 0.1)' 
+        : 'rgba(255, 255, 255, 0.1)'};
+    
+    &::before {
+      width: 3px;
+      height: 60%;
+      opacity: 1;
+    }
+  }
+`;
+
+export const ThemeDropdownContainer = styled.div`
+  position: relative;
+`;
+
+export const ThemeDropdownButton = styled.button<{ $isOpen: boolean }>`
+  background: none;
+  border: 1px solid ${props => 
+    props.theme.name === 'light' 
+      ? 'rgba(26, 22, 35, 0.1)' 
+      : 'rgba(255, 255, 255, 0.1)'};
+  color: ${props => props.theme.colors.text};
+  padding: 0.5rem 2.5rem 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+  position: relative;
+  appearance: none;
+  min-width: 140px;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: #000000;
+    
+    &::after {
+      border-top-color: #000000;
+    }
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px ${props => 
+      props.theme.name === 'light' 
+        ? 'rgba(26, 22, 35, 0.2)' 
+        : 'rgba(255, 255, 255, 0.2)'};
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: 0.7rem;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid ${props => props.theme.colors.text};
+    transition: transform 0.3s ease, border-top-color 0.3s ease;
+    transform: translateY(-50%) ${props => props.$isOpen ? 'rotate(180deg)' : 'rotate(0deg)'};
+  }
+`;
+
+export const ThemeDropdownList = styled.ul<{ $isOpen: boolean }>`
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 0.5rem;
+  background-color: ${props => props.theme.colors.background};
+  border: 1px solid ${props => 
+    props.theme.name === 'light' 
+      ? 'rgba(26, 22, 35, 0.1)' 
+      : 'rgba(255, 255, 255, 0.1)'};
+  border-radius: 8px;
+  list-style: none;
+  padding: 0.5rem 0;
+  min-width: 140px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  opacity: ${props => props.$isOpen ? '1' : '0'};
+  visibility: ${props => props.$isOpen ? 'visible' : 'hidden'};
+  transform: ${props => props.$isOpen ? 'translateY(0)' : 'translateY(-10px)'};
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+  z-index: 1000;
+`;
+
+export const ThemeDropdownItem = styled.li<{ $isSelected: boolean }>`
+  padding: 0.5rem 1.5rem;
+  color: ${props => props.theme.colors.text};
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 0.9rem;
+  position: relative;
+  transition: background-color 0.2s ease;
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: ${props => props.$isSelected ? '3px' : '0'};
+    height: ${props => props.$isSelected ? '60%' : '0'};
+    background-color: ${props => props.theme.colors.text};
+    border-radius: 0 2px 2px 0;
+    transition: width 0.2s ease, height 0.2s ease;
+    opacity: ${props => props.$isSelected ? '1' : '0'};
+  }
+
+  &:hover {
+    background-color: ${props => 
+      props.theme.name === 'light' 
+        ? 'rgba(26, 22, 35, 0.1)' 
+        : 'rgba(255, 255, 255, 0.1)'};
+    
+    &::before {
+      width: 3px;
+      height: 60%;
+      opacity: 1;
+    }
   }
 `;
 

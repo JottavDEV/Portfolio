@@ -32,6 +32,42 @@ export const ProjectsTitle = styled.h2`
   }
 `;
 
+export const ProjectsCarouselContainer = styled.div`
+  position: relative;
+  width: 100%;
+  padding: 2rem 0;
+`;
+
+export const ProjectsViewport = styled.div`
+  overflow: hidden;
+  width: 100%;
+`;
+
+export const ProjectsCarouselContainerInner = styled.div`
+  display: flex;
+  align-items: stretch;
+  gap: 2rem;
+  touch-action: pan-y pinch-zoom;
+
+  @media (max-width: 768px) {
+    gap: 1.5rem;
+  }
+`;
+
+export const ProjectSlide = styled.div`
+  flex: 0 0 calc(33.333% - 1.334rem);
+  min-width: 0;
+  display: flex;
+
+  @media (max-width: 1024px) {
+    flex: 0 0 calc(50% - 1rem);
+  }
+
+  @media (max-width: 768px) {
+    flex: 0 0 calc(100% - 1.5rem);
+  }
+`;
+
 export const ProjectsGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -58,6 +94,8 @@ export const ProjectCard = styled.div`
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
+  width: 100%;
+  height: 100%;
 
   &:hover {
     transform: translateY(-4px);
@@ -172,6 +210,71 @@ export const ProjectLink = styled.div`
         width: 100%;
       }
     }
+  }
+`;
+
+export const CarouselButtons = styled.div`
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+
+  @media (max-width: 768px) {
+    margin-top: 1.5rem;
+  }
+`;
+
+export const CarouselButton = styled.button`
+  font-family: var(--font-montserrat), -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 300;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid ${props => 
+    props.theme.name === 'light' 
+      ? 'rgba(26, 22, 35, 0.2)' 
+      : 'rgba(255, 255, 255, 0.2)'};
+  background-color: ${props => 
+    props.theme.name === 'light' 
+      ? 'rgba(26, 22, 35, 0.1)' 
+      : 'rgba(255, 255, 255, 0.1)'};
+  color: ${props => props.theme.colors.text};
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  appearance: none;
+
+  &:hover {
+    background-color: ${props => 
+      props.theme.name === 'light' 
+        ? 'rgba(26, 22, 35, 0.15)' 
+        : 'rgba(255, 255, 255, 0.15)'};
+    border-color: ${props => 
+      props.theme.name === 'light' 
+        ? 'rgba(26, 22, 35, 0.3)' 
+        : 'rgba(255, 255, 255, 0.3)'};
+    transform: scale(1.1);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px ${props =>
+      props.theme.name === 'light'
+        ? 'rgba(26, 22, 35, 0.2)'
+        : 'rgba(255, 255, 255, 0.2)'};
+  }
+
+  @media (max-width: 768px) {
+    width: 45px;
+    height: 45px;
+    font-size: 1.3rem;
   }
 `;
 

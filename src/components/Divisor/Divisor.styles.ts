@@ -67,8 +67,8 @@ export const DivisorContainer = styled.div<{ $direction: 'left-to-right' | 'righ
 export const Line = styled.div<{ $isVisible: boolean; $direction: 'left-to-right' | 'right-to-left' }>`
   position: absolute;
   height: 2px;
-  background-color: ${props => props.theme.colors.text};
-  opacity: 0.3;
+  background-color: ${props => props.theme.name === 'dark' ? '#ffffff' : props.theme.colors.text};
+  opacity: 1;
   
   ${props => {
     if (props.$direction === 'left-to-right') {
@@ -108,7 +108,7 @@ export const Circle = styled.div<{ $isVisible: boolean; $direction: 'left-to-rig
   width: 12px;
   height: 12px;
   border-radius: 50%;
-  background-color: ${props => props.theme.colors.text};
+  background-color: ${props => props.theme.name === 'dark' ? '#ffffff' : props.theme.colors.text};
   opacity: 0.3;
   
   ${props => {

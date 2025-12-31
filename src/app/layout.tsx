@@ -17,8 +17,12 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: 'Portfolio',
+  title: 'João Victor - Portfólio',
   description: 'Meu portfólio pessoal',
+  icons: {
+    icon: '/images/favicon.png',
+    apple: '/images/favicon.png',
+  },
 };
 
 export default function RootLayout({

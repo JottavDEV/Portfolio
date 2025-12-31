@@ -1,4 +1,26 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+
+const slideInLeft = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
+
+const slideInRight = keyframes`
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+`;
 
 export const SkillsSection = styled.section`
   padding: 6rem 2rem;
@@ -52,7 +74,7 @@ export const SkillsGrid = styled.div`
   }
 `;
 
-export const SkillCard = styled.div`
+export const SkillCard = styled.div<{ $isVisible: boolean; $animationDirection: 'left' | 'right' }>`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -71,6 +93,12 @@ export const SkillCard = styled.div`
   width: 100%;
   max-width: 140px;
   transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  opacity: ${props => props.$isVisible ? '1' : '0'};
+  animation: ${props => 
+    props.$isVisible 
+      ? (props.$animationDirection === 'left' ? slideInLeft : slideInRight)
+      : 'none'
+  } 0.6s ease-out forwards;
 
   &:hover {
     transform: translateY(-4px);
@@ -115,16 +143,37 @@ export const SkillLogo = styled.div<{ $color: string }>`
     height: 60px;
     color: ${props => props.$color};
     transition: transform 0.3s ease;
+    filter: ${props => 
+      props.theme.name === 'light' 
+        ? 'drop-shadow(0 2px 4px rgba(26, 22, 35, 0.2))' 
+        : 'none'};
   }
 
-  ${SkillCard}:hover & svg {
+  img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+    filter: ${props => 
+      props.theme.name === 'light' 
+        ? 'drop-shadow(0 2px 4px rgba(26, 22, 35, 0.2))' 
+        : 'none'};
+  }
+
+  ${SkillCard}:hover & svg,
+  ${SkillCard}:hover & img {
     transform: scale(1.1);
+    filter: ${props => 
+      props.theme.name === 'light' 
+        ? 'drop-shadow(0 4px 8px rgba(26, 22, 35, 0.3))' 
+        : 'none'};
   }
 
   @media (max-width: 768px) {
     height: 50px;
 
-    svg {
+    svg,
+    img {
       width: 50px;
       height: 50px;
     }
