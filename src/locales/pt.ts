@@ -40,6 +40,10 @@ export const pt = {
         title: 'Site para Casal',
         description: 'Um site romântico personalizado para casais, com galeria de fotos, contador de tempo juntos e seções especiais.',
       },
+      climaDash: {
+        title: 'ClimaDash',
+        description: 'Um dashboard de clima, com informações sobre temperatura, umidade, pressão, vento e nuvens, feito em React com TypeScript e TailwindCSS.',
+      },
     },
   },
   about: {

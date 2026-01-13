@@ -82,6 +82,15 @@ export const Projects: React.FC<ProjectsProps> = ({ projects }) => {
       tags: ['Next.js', 'TypeScript', 'Styled-components'],
       link: 'https://love-us.vercel.app',
     },
+    {
+      id: '5',
+      title: t.projects.items.climaDash.title,
+      description: t.projects.items.climaDash.description,
+      image: '/images/topo.png',
+      previewUrl: 'https://love-us.vercel.app',
+      tags: ['Next.js', 'TypeScript'],
+      link: 'https://clima-dash.vercel.app',
+    },
   ];
 
   const projectsToShow = projects || defaultProjects;

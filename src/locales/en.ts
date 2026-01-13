@@ -40,6 +40,10 @@ export const en = {
         title: 'Couple Website',
         description: 'A romantic personalized website for couples, with photo gallery, time counter together and special sections.',
       },
+      climaDash: {
+        title: 'ClimaDash',
+        description: 'A weather dashboard with information about temperature, humidity, pressure, wind and clouds, made with React and TypeScript.',
+      },
     },
   },
   about: {
