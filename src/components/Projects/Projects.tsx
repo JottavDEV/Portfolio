@@ -87,7 +87,7 @@ export const Projects: React.FC<ProjectsProps> = ({ projects }) => {
       title: t.projects.items.climaDash.title,
       description: t.projects.items.climaDash.description,
       image: '/images/topo.png',
-      previewUrl: 'https://love-us.vercel.app',
+      previewUrl: 'https://clima-dash.vercel.app',
       tags: ['Next.js', 'TypeScript'],
       link: 'https://clima-dash.vercel.app',
     },
